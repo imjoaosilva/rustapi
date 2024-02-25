@@ -9,10 +9,6 @@
 ARG RUST_VERSION=1.76.0
 ARG APP_NAME=rustapi
 
-################################################################################
-# xx is a helper for cross-compilation.
-# See https://github.com/tonistiigi/xx/ for more information.
-FROM --platform=$BUILDPLATFORM tonistiigi/xx:1.3.0 AS xx
 
 ################################################################################
 # Create a stage for building the application.
