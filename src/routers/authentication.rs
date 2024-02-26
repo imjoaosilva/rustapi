@@ -1,6 +1,11 @@
 
+
 pub mod authentication {
-    use axum::{Router, routing::get};
+    use std::sync::Arc;
+
+    use axum::{routing::get, Extension, Router};
+
+    use crate::models::state::State;
 
     pub fn router() -> Router {
         Router::new()
@@ -8,7 +13,9 @@ pub mod authentication {
             .route("/register", get(register))
     }
 
-    async fn login() -> &'static str {
+    // login route que pega a layer com a extension do prisma client
+
+    async fn login(Extension(_client): Extension<Arc<State>>) -> &'static str {
         "Login"
     }
 

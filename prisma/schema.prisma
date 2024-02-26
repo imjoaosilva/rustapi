@@ -2,10 +2,18 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client-js"
+  provider = "cargo prisma"
+  output = "../src/prisma.rs"
 }
 
 datasource db {
   provider = "sqlite"
   url      = "file:../database/dev.db"
+}
+
+model User {
+  id      Int      @id @default(autoincrement())
+  name   String
+  age    Int
+  role String @default("USER") 
 }
