@@ -5,7 +5,7 @@ use axum::Router;
 async fn main() {
     dotenvy::dotenv().ok();
 
-    let port = env::var("PORT").unwrap_or("8080".to_string());
+    let port = env::var("PORT").unwrap_or("3035".to_string());
 
     let app = Router::new()
         .nest("/api/v1/auth", rustapi::routers::authentication());
