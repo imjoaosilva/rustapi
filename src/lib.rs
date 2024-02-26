@@ -5,3 +5,4 @@ pub mod prisma;
 
 pub mod routers;
 pub mod models;
+pub mod controllers;

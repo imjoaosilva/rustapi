@@ -5,6 +5,7 @@ use rustapi::models::state::State;
 
 pub mod models;
 
+
 #[tokio::main]
 async fn main() {
     dotenvy::dotenv().ok();
