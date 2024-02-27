@@ -1,13 +1,32 @@
 pub mod authentication_controller {
 
+    use axum::{body::Body, extract::rejection::JsonRejection, http, Extension, Json};
     use std::sync::Arc;
+    use crate::models::{error::Error, state::State, response::{JsonResponse, Login}};
 
-    use axum::Extension;
+    pub async fn login(
+        client: Extension<Arc<State>>,
+        payload: Result<Json<Login>, JsonRejection>
+    ) -> Result<http::Response<Body>, Error> {
 
-    use crate::models::state::State;
+        if payload.is_err() {
+            return Err(Error::BadRequest());
+        };
 
-    pub async fn login(Extension(_client): Extension<Arc<State>>) -> &'static str {
-        "Login"
+
+        let result = client.client.user().find_many(vec![]).exec().await?;
+
+        let json = serde_json::to_string(&JsonResponse {
+            status: 200,
+            data: result
+        }).unwrap();
+        
+        let response = http::Response::builder()
+            .status(200)
+            .body(Body::from(json))
+            .unwrap();
+
+        Ok(response)
     }
 
     pub async fn register() -> &'static str {

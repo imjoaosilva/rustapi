@@ -3,9 +3,6 @@ use std::{env, sync::Arc};
 use rustapi::PrismaClient;
 use rustapi::models::state::State;
 
-pub mod models;
-
-
 #[tokio::main]
 async fn main() {
     dotenvy::dotenv().ok();

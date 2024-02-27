@@ -3594,6 +3594,8 @@ dependencies = [
  "dotenvy",
  "prisma-client-rust",
  "serde",
+ "serde_json",
+ "thiserror",
  "tokio",
 ]
 
