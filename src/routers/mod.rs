@@ -1,5 +1,5 @@
-use super::controllers::authentication::authentication_controller;
-
 mod authentication;
 
-pub use authentication::authentication::router as authentication;
+pub use super::controllers::authentication::{login, register};
+
+pub use authentication::router as authentication;
